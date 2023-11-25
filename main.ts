@@ -29,7 +29,7 @@ function alle2Sekunden () {
         OLEDtext.writeText8x16(13, 0, 7, "" + Math.round(laufzeit_ms / 1000) + " " + "s", oled.eAlign.rechts)
         OLEDtext.writeText8x16(14, 0, 7, wattmeter.statuszeile(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45), wattmeter.eStatuszeile.v), oled.eAlign.rechts)
         OLEDtext.writeText8x16(15, 0, 7, wattmeter.statuszeile(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45), wattmeter.eStatuszeile.mA), oled.eAlign.rechts)
-        if (Calli2bot.geti2cError() == -1010 && input.runningTime() > 11000) {
+        if (Calli2bot.geti2cError() == -1010 && bit.between(input.runningTime(), 11000, 20000)) {
             oled.comment("wenn CalliBot beim Start nicht angeschaltet war")
             control.reset()
         }
