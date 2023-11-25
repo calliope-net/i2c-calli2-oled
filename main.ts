@@ -1,6 +1,9 @@
 radio.onReceivedNumber(function (receivedNumber) {
     funkzeit_ms = input.runningTime()
     OLEDtext.writeText8x16(1, 0, 7, bit.formatNumber(receivedNumber, bit.eLength.HEX_FFFFFFFF))
+    if (bit.getBit(receivedNumber, 24)) {
+        Calli2bot.fahreJoystick(receivedNumber)
+    }
     i2cSchleife()
 })
 function funkTimeout () {
@@ -18,7 +21,7 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     }
 })
 function i2cSchleife () {
-    Calli2bot.setLed1(calli2bot.eLed.poweron, true, false, 2)
+    Calli2bot.setLed1(calli2bot.eLed.poweron, true, true, 1)
     alle2Sekunden()
 }
 function alle2Sekunden () {
@@ -39,7 +42,7 @@ Calli2bot = calli2bot.beimStart(calli2bot.calli2bot_eADDR(calli2bot.eADDR.CB2_x2
 OLEDtext.set_eeprom_8x8(oled.oled_eEEPROM_Startadresse(oled.eEEPROM_Startadresse.F000))
 OLEDtext.writeText8x16(0, 0, 7, "TYP " + Calli2bot.i2cReadFW_VERSION(calli2bot.eVersion.Typ))
 radio.setGroup(22)
-funkzeit_ms = 1
+funkzeit_ms = 0
 basic.forever(function () {
     if (OLEDtext.geti2cError_OLED() != 0) {
         oled.comment("im Simulator kein Programm abarbeiten")
@@ -50,7 +53,5 @@ basic.forever(function () {
     } else if (input.runningTime() - funkzeit_ms > 2000) {
         oled.comment("Timeout, wenn länger als 2s keine Daten über Bluetooth empfangen werden")
         funkTimeout()
-    } else {
-    	
     }
 })
