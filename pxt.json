@@ -1,0 +1,29 @@
+{
+    "name": "i2c-calli2-oled",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "calli2bot": "github:calliope-net/calli2bot#5f62cfe505b6da1b38d75c638842980a536df53d",
+        "oled": "github:calliope-net/oled#e716b0fb848cda4c6dd989e689422cfd3a014a47"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v4.0.29",
+        "tag": "v4.0.29",
+        "commits": "https://github.com/microsoft/pxt-calliope/commits/5a1ba75dc9f06c3fbddf4f40fc154cdd4dc826f1",
+        "target": "4.0.29",
+        "pxt": "7.0.18",
+        "targetId": "calliopemini"
+    },
+    "supportedTargets": [
+        "calliopemini"
+    ],
+    "preferredEditor": "blocksprj"
+}
