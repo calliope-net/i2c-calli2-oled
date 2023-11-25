@@ -9,8 +9,7 @@ radio.onReceivedNumber(function (receivedNumber) {
 function funkTimeout () {
     Calli2bot.i2cRESET_OUTPUTS()
     OLEDtext.writeText8x16(1, 0, 7, oled.oled_text("TIMEOUT"))
-    Calli2bot.setLed1(calli2bot.eLed.poweron, true, true)
-    calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p05))
+    Calli2bot.setRgbLed3(0xff0000, true, true, true, true, true)
 }
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
 	
@@ -30,6 +29,9 @@ function alle2Sekunden () {
         OLEDtext.writeText8x16(13, 0, 7, "" + Math.round(laufzeit_ms / 1000) + " " + "s", oled.eAlign.rechts)
         OLEDtext.writeText8x16(14, 0, 7, wattmeter.statuszeile(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45), wattmeter.eStatuszeile.v), oled.eAlign.rechts)
         OLEDtext.writeText8x16(15, 0, 7, wattmeter.statuszeile(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45), wattmeter.eStatuszeile.mA), oled.eAlign.rechts)
+        if (Calli2bot.geti2cError() == -1010 && input.runningTime() > 11000) {
+            control.reset()
+        }
     }
 }
 let laufzeit_ms = 0
@@ -41,7 +43,8 @@ wattmeter.reset(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45))
 Calli2bot = calli2bot.beimStart(calli2bot.calli2bot_eADDR(calli2bot.eADDR.CB2_x22))
 OLEDtext.set_eeprom_8x8(oled.oled_eEEPROM_Startadresse(oled.eEEPROM_Startadresse.F000))
 OLEDtext.writeText8x16(0, 0, 7, "TYP " + Calli2bot.i2cReadFW_VERSION(calli2bot.eVersion.Typ))
-radio.setGroup(22)
+radio.setFrequencyBand(1)
+radio.setGroup(222)
 funkzeit_ms = 0
 basic.forever(function () {
     if (OLEDtext.geti2cError_OLED() != 0) {
@@ -50,8 +53,8 @@ basic.forever(function () {
     } else if (funkzeit_ms == 0) {
         oled.comment("dauerhaft nur, wenn keine Daten über Bluetooth empfangen werden")
         i2cSchleife()
-    } else if (input.runningTime() - funkzeit_ms > 2000) {
-        oled.comment("Timeout, wenn länger als 2s keine Daten über Bluetooth empfangen werden")
+    } else if (input.runningTime() - funkzeit_ms > 1500) {
+        oled.comment("Timeout, wenn länger als 1,5s keine Daten über Bluetooth empfangen werden")
         funkTimeout()
     }
 })
