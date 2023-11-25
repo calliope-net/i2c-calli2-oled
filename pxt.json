@@ -4,7 +4,7 @@
     "dependencies": {
         "core": "*",
         "oled": "github:calliope-net/oled#master",
-        "wattmeter": "github:calliope-net/wattmeter#v2.0.0",
+        "wattmeter": "github:calliope-net/wattmeter#v2.0.1",
         "calli2bot": "github:calliope-net/calli2bot#master",
         "radio": "*",
         "bit": "github:calliope-net/bit#master"
