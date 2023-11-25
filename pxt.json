@@ -3,8 +3,9 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "calli2bot": "github:calliope-net/calli2bot#5f62cfe505b6da1b38d75c638842980a536df53d",
-        "oled": "github:calliope-net/oled#e716b0fb848cda4c6dd989e689422cfd3a014a47"
+        "oled": "github:calliope-net/oled#master",
+        "wattmeter": "github:calliope-net/wattmeter#v2.0.0",
+        "calli2bot": "github:calliope-net/calli2bot#master"
     },
     "files": [
         "main.blocks",
