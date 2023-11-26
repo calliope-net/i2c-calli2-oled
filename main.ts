@@ -1,10 +1,14 @@
 radio.onReceivedNumber(function (receivedNumber) {
     funkzeit_ms = input.runningTime()
-    OLEDtext.writeText8x16(1, 0, 7, bit.formatNumber(receivedNumber, bit.eLength.HEX_FFFFFFFF))
     if (bit.getBit(receivedNumber, 24)) {
-        Calli2bot.fahreJoystick(receivedNumber)
+        oled.comment("fährt, alle i2c Anzeigen nicht aktualisieren um Zeit zu sparen")
+        Calli2bot.fahreJoystick(receivedNumber, true, true)
+    } else {
+        oled.comment("fährt nicht")
+        OLEDtext.writeText8x16(1, 0, 7, bit.formatNumber(receivedNumber, bit.eLength.HEX_FFFFFFFF))
+        Calli2bot.setRgbLed3(0x0000ff)
+        i2cSchleife()
     }
-    i2cSchleife()
 })
 function funkTimeout () {
     Calli2bot.i2cRESET_OUTPUTS()
@@ -30,7 +34,7 @@ function alle2Sekunden () {
         OLEDtext.writeText8x16(14, 0, 7, wattmeter.statuszeile(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45), wattmeter.eStatuszeile.v), oled.eAlign.rechts)
         OLEDtext.writeText8x16(15, 0, 7, wattmeter.statuszeile(wattmeter.wattmeter_eADDR(wattmeter.eADDR.Watt_x45), wattmeter.eStatuszeile.mA), oled.eAlign.rechts)
         if (Calli2bot.geti2cError() == -1010 && bit.between(input.runningTime(), 11000, 20000)) {
-            oled.comment("wenn CalliBot beim Start nicht angeschaltet war")
+            oled.comment("wenn CalliBot 0x22 beim Start nicht angeschaltet war")
             control.reset()
         }
     }
