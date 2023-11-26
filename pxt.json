@@ -7,7 +7,7 @@
         "wattmeter": "github:calliope-net/wattmeter#v2.0.1",
         "calli2bot": "github:calliope-net/calli2bot#v1.1.0",
         "radio": "*",
-        "bit": "github:calliope-net/bit#master"
+        "bit": "github:calliope-net/bit#v1.2.0"
     },
     "files": [
         "main.blocks",
