@@ -1,6 +1,6 @@
 {
     "name": "i2c-calli2-oled",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "",
     "dependencies": {
         "calli2bot": "github:calliope-net/calli2bot#v1.1.0",
