@@ -8,7 +8,7 @@
         "oled": "github:calliope-net/oled#v0.0.1",
         "wattmeter": "github:calliope-net/wattmeter#v2.0.1",
         "radio": "*",
-        "bit": "github:calliope-net/bit#v1.2.0"
+        "bit": "github:calliope-net/bit#v1.2.1"
     },
     "files": [
         "main.blocks",
