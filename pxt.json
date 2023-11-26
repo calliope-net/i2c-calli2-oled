@@ -3,7 +3,7 @@
     "description": "",
     "dependencies": {
         "core": "*",
-        "oled": "github:calliope-net/oled#master",
+        "oled": "github:calliope-net/oled#v0.0.1",
         "wattmeter": "github:calliope-net/wattmeter#v2.0.1",
         "calli2bot": "github:calliope-net/calli2bot#master",
         "radio": "*",
