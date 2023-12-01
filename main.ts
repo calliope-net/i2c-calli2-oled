@@ -16,7 +16,11 @@ function funkTimeout () {
     Calli2bot.setRgbLed3(0xff0000, true, true, true, true, true)
 }
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-	
+    Calli2bot.setMotor(calli2bot.eMotor.m1, 100)
+    calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p20))
+    Calli2bot.setMotor(calli2bot.eMotor.m2, -100)
+    calli2bot.pause(calli2bot.calli2bot_ePause(calli2bot.ePause.p10))
+    Calli2bot.setMotor(calli2bot.eMotor.beide, 0)
 })
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     while (Calli2bot.seite9Linienfolger(100, 50, 10)) {
