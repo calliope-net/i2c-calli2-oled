@@ -3,7 +3,7 @@
     "version": "0.0.2",
     "description": "",
     "dependencies": {
-        "calli2bot": "github:calliope-net/calli2bot#v1.1.0",
+        "calli2bot": "github:calliope-net/calli2bot#v1.1.1",
         "core": "*",
         "oled": "github:calliope-net/oled#v0.0.1",
         "wattmeter": "github:calliope-net/wattmeter#v2.0.1",
